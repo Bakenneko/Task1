@@ -1,29 +1,23 @@
 package edu.duke;
 
+import edu.csv.CSVFormat;
+import edu.csv.CSVParser;
+
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.net.URL;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.Reader;
-import java.io.StringReader;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
+
 
 
 /**
  * The <code>FileResource</code> class represents a file and allows access to its contents a line at
  * a time, using the method <code>lines</code>, or a word at a time, using the method
  * <code>words</code>. These strings can then be iterated over using a <code>for</code> loop.
- * 
+ *
  * <P>
  * Example usage:
- * 
+ *
  * <PRE>
  * FileResource fr = new FileResource();
  * for (String s : fr.words()) {
@@ -32,13 +26,13 @@ import org.apache.commons.csv.CSVParser;
  * </PRE>
  *
  * <P>
- * If each line of the file represents separated data values, because its a CSV file, then the user
+ * If each line of the file represents separated data values, because it's a CSV file, then the user
  * can get a <code>getCSVParser</code> object to access that data more directly, using one of the
  * <code>getCSVParser</code> methods.
  *
  * <P>
  * Example CSV usage:
- * 
+ *
  * <PRE>
  * FileResource fr = new FileResource("food.csv");
  * for (CSVRecord record : fr.getCSVParser()) {
@@ -47,11 +41,11 @@ import org.apache.commons.csv.CSVParser;
  *     // other processing
  * }
  * </PRE>
- * 
+ *
  * <P>
  * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">...</a> for details.
+ *
  * @author Duke Software Team
  */
 public class FileResource {
@@ -101,7 +95,7 @@ public class FileResource {
      * 
      * If the user wants to change the contents of the open file by using the method
      * <code>write</code> to add new strings to it, pass <code>true</code> as the second parameter.
-     * Otherwise it is assumed the user will only iterate over the existing contents of the file.
+     * Otherwise, it is assumed the user will only iterate over the existing contents of the file.
      * 
      * @param writable allow changes to this file only if true
      * @throws exception if no file is selected by the user
@@ -144,7 +138,7 @@ public class FileResource {
      * 
      * If the user wants to change the contents of the open file by using the method
      * <code>write</code> to add new strings to it, pass <code>true</code> as the second parameter.
-     * Otherwise it is assumed the user will only iterate over the existing contents of the file.
+     * Otherwise, it is assumed the user will only iterate over the existing contents of the file.
      * 
      * The named file should be on the current class path to be found.
      * 
