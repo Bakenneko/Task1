@@ -1,29 +1,36 @@
-public class Main {
-    public static void main(String[] args) {
+//
+//public class Main {
+//    public static void main(String[] args) {
+//
+//        Thing f = new Thing(6);
+//        Thing g = new Thing(8);
+//        f.combine(g);
+//        System.out.println(f.getA());
+//        System.out.println(g.getA());
+//
+//    }
+//}
 
-        Main obj = new Main();
-        int result = obj.k(6,6);
-        System.out.println(result);
 
-    }
 
-    int k(int a, int b) {
-        if (a < b) {
-            if (b > 4) {
-                return 0;
-            } else {
-                return 1;
-            }
-        } else {
-            if (a > 4) {
-                return 2;
-            } else {
-                return 3;
-            }
-        }
-    }
 
-}
+//    int k(int a, int b) {
+//        if (a < b) {
+//            if (b > 4) {
+//                return 0;
+//            } else {
+//                return 1;
+//            }
+//        } else {
+//            if (a > 4) {
+//                return 2;
+//            } else {
+//                return 3;
+//            }
+//        }
+//    }
+
+
 
 //        int g (int a) {
 //            if (a < 9) {
