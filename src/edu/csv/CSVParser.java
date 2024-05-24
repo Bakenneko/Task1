@@ -1,20 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package edu.csv;
 
 import java.io.Closeable;
@@ -28,22 +11,18 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
+
 import java.util.TreeMap;
 
 
 /**
  * Parses CSV files according to the specified format.
- *
  * Because CSV appears in many different dialects, the parser supports many formats by allowing the
  * specification of a {@link CSVFormat}.
- *
  * The parser works record wise. It is not possible to go back, once a record has been parsed from the input stream.
- *
  * <h2>Creating instances</h2>
  * <p>
  * There are several static factory methods that can be used to create instances for various types of resources:
@@ -55,7 +34,6 @@ import java.util.TreeMap;
  * </ul>
  * <p>
  * Alternatively parsers can also be created by passing a {@link Reader} directly to the sole constructor.
- *
  * For those who like fluent APIs, parsers can be created using {@link CSVFormat#parse(java.io.Reader)} as a shortcut:
  * </p>
  * <pre>
@@ -169,9 +147,9 @@ public final class CSVParser implements Closeable {
      * @throws IOException
      *             If an I/O error occurs
      */
-    public static CSVParser parse(final String string, final csv.CSVFormat format) throws IOException {
-        csv.Assertions.notNull(string, "string");
-        csv.Assertions.notNull(format, "format");
+    public static CSVParser parse(final String string, final CSVFormat format) throws IOException {
+        Assertions.notNull(string, "string");
+        Assertions.notNull(format, "format");
 
         return new CSVParser(new StringReader(string), format);
     }
@@ -398,18 +376,23 @@ public final class CSVParser implements Closeable {
             // build the name to index mappings
             if (headerRecord != null) {
                 for (int i = 0; i < headerRecord.length; i++) {
-                    final String header = headerRecord[i];
-                    final boolean containsHeader = hdrMap.containsKey(header);
-                    final boolean emptyHeader = header == null || header.trim().isEmpty();
-                    if (containsHeader && (!emptyHeader || !this.format.getAllowMissingColumnNames())) {
-                        throw new IllegalArgumentException("The header contains a duplicate name: \"" + header +
-                                "\" in " + Arrays.toString(headerRecord));
-                    }
+                    final String header = getString(headerRecord, i, hdrMap);
                     hdrMap.put(header, Integer.valueOf(i));
                 }
             }
         }
         return hdrMap;
+    }
+
+    private String getString(String[] headerRecord, int i, Map<String, Integer> hdrMap) {
+        final String header = headerRecord[i];
+        final boolean containsHeader = hdrMap.containsKey(header);
+        final boolean emptyHeader = header == null || header.trim().isEmpty();
+        if (containsHeader && (!emptyHeader || !this.format.getAllowMissingColumnNames())) {
+            throw new IllegalArgumentException("The header contains a duplicate name: \"" + header +
+                    "\" in " + Arrays.toString(headerRecord));
+        }
+        return header;
     }
 
     /**
@@ -457,12 +440,12 @@ public final class CSVParser implements Closeable {
                     sb.append(Constants.LF);
                 }
                 sb.append(this.reusableToken.content);
-                this.reusableToken.type = TOKEN; // Read another token
+                this.reusableToken.type = Token.Type.TOKEN ; // Read another token
                 break;
             default:
                 throw new IllegalStateException("Unexpected Token type: " + this.reusableToken.type);
             }
-        } while (this.reusableToken.type == TOKEN);
+        } while (this.reusableToken.type == Token.Type.TOKEN);
 
         if (!this.record.isEmpty()) {
             this.recordNumber++;

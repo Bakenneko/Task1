@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
+import edu.csv.CSVParser;
+import edu.csv.CSVFormat;
 
 
 /**
