@@ -24,7 +24,6 @@ public class PerimeterAssignmentRunner {
             // Update prevPt to be currPt
             prevPt = currPt;
         }
-        // totalPerim is the answer
         return totalPerim;
     }
 

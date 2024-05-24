@@ -46,7 +46,6 @@ import java.util.ArrayList;
  * 
  * <P>
  * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
  * 
  * @author Duke Coursera Team
  */
