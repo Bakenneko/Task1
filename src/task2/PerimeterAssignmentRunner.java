@@ -26,7 +26,7 @@ public class PerimeterAssignmentRunner {
         }
         return totalPerim;
     }
-// andrew andrew
+
     public int getNumPoints(Shape s) {
         if (s == null) {
             return 0;
