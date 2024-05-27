@@ -1,6 +1,5 @@
 package task2;
 
-
 import edu.duke.DirectoryResource;
 import edu.duke.FileResource;
 import edu.duke.Point;
@@ -34,9 +33,32 @@ public class PerimeterAssignmentRunner {
     }
 
     public double getAverageLength(Shape s) {
-        // Put code here
-        return 0.0;
+        if (s == null ) {
+            return 0.0;
+        }
+        double totalLength = 0.0;
+        int count = 0;
+        Point prevPoint = null;
+
+        for (Point p : s.getPoints()) {
+            if (prevPoint != null) {
+                double distance = prevPoint.distance(p);
+                totalLength += distance;
+                count++;
+            }
+            prevPoint = p;
+        }
+
+        if (prevPoint != null && s.getPoints().iterator().hasNext()) {
+            Point firstPoint = s.getPoints().iterator().next();
+            double distance = prevPoint.distance(firstPoint);
+            totalLength += distance;
+            count++;
+        }
+
+        return count > 0 ? totalLength / count : 0.0;
     }
+
 
     public double getLargestSide(Shape s) {
         // Put code here
