@@ -26,10 +26,16 @@ public class PerimeterAssignmentRunner {
         }
         return totalPerim;
     }
-
+// andrew andrew
     public int getNumPoints(Shape s) {
-        // Put code here
-        return 0;
+        if (s == null) {
+            return 0;
+        }
+            int count = 0;
+            for (Point p : s.getPoints()) {
+            count++;
+        }
+        return count;
     }
 
     public double getAverageLength(Shape s) {

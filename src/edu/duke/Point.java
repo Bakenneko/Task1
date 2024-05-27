@@ -5,25 +5,25 @@ package edu.duke;
  * The <code>Point</code> class represents a two-dimensional location, constructed from (x,y) 
  * coordinates with some methods for access and the capability to calculate the distance from 
  * this point to another point.
- * 
+ *
  * <P>
  * Example usage:
- * 
+ *
  * <PRE>
  * Point a = new Point(3, 4);
  * Point b = new Point(2, 5);
  * double dist = a.distance(b);
  * </PRE>
- * 
+ *
  * <P>
  * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">...</a> for details.
+ *
  * @author Duke Coursera Team
  */
 public class Point {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     /**
      * Create a <code>Point</code> object from x and y coordinates.
